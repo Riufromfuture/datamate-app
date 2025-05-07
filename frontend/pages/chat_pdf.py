@@ -11,6 +11,8 @@ import os
 from google.cloud import vision
 from google.oauth2 import service_account
 
+load_dotenv()  # This loads the .env file into environment variables
+
 # Navbar
 from components.navbar import show_navbar
 
