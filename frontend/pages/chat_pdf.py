@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 import os
 from components.navbar import show_navbar
 
+os.environ['TESSDATA_PREFIX'] = '/usr/share'
+
 load_dotenv()  # This loads the .env file into environment variables
 
 st.set_page_config(page_title="Chat with PDF", page_icon="📄")
