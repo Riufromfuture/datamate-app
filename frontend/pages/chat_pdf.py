@@ -1,15 +1,15 @@
 import streamlit as st
 import pandas as pd
 import fitz  # PyMuPDF
-import pytesseract
+import easyocr
+import numpy as np
 from PIL import Image
 from io import BytesIO
 from groq import Groq
-from dotenv import load_dotenv
 import os
-from components.navbar import show_navbar
 
-load_dotenv()  # This loads the .env file into environment variables
+# Navbar (if you have one)
+from components.navbar import show_navbar
 
 st.set_page_config(page_title="Chat with PDF", page_icon="📄")
 show_navbar()
@@ -21,6 +21,9 @@ if not groq_api_key:
     st.error("❌ GROQ_API_KEY is missing. Please set it in your environment or Streamlit secrets.")
 else:
     client = Groq(api_key=groq_api_key)
+
+# Initialize EasyOCR
+reader = easyocr.Reader(['en'], gpu=False)
 
 # Initialize session state
 if "pdf_messages" not in st.session_state:
@@ -45,7 +48,8 @@ if uploaded_pdf:
                     st.info("Scanned PDF detected. Running OCR on images 🧠")
                 pix = page.get_pixmap(dpi=300)
                 img = Image.open(BytesIO(pix.tobytes()))
-                ocr_text = pytesseract.image_to_string(img)
+                ocr_result = reader.readtext(np.array(img), detail=0)
+                ocr_text = " ".join(ocr_result)
                 if ocr_text.strip():
                     text_chunks.append(ocr_text.strip())
 
