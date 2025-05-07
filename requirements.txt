@@ -12,7 +12,7 @@ langchain==0.1.13
 langchain-community==0.0.29
 langchain-core==0.1.36
 langchain-groq==0.0.1
-groq  # Ensure correct version of Groq
+groq==0.24.0  # Pinned to version seen in your logs
 
 # Data
 pandas==2.2.1
@@ -23,17 +23,15 @@ python-docx==0.8.11
 openpyxl==3.1.2
 PyMuPDF==1.22.5
 Pillow==9.2.0
-numpy>=1.26.0,<=1.26.4
-pandas==2.2.1
+numpy>=1.26.0,<=1.26.4  # Fixed to be compatible with pandas 2.2.1
 
 # OCR
-google-cloud-vision==3.0.2  # Google Cloud Vision API for OCR
+google-cloud-vision==3.0.2
 
-# Fix for Google Cloud dependencies
+# Authentication
 google-auth==2.14.1
 
-# Fix for any dependencies
+# Build dependencies
 setuptools>=65.0.0
-
-# Protobuf version that works with Streamlit and Google Cloud dependencies
+wheel  # Added for better build support
 protobuf==3.20.2
