@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 from io import BytesIO
 from groq import Groq
+from dotenv import load_dotenv
 import os
 
 # Google Cloud Vision setup
