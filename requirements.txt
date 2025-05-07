@@ -22,7 +22,7 @@ requests==2.31.0
 python-docx==0.8.11
 openpyxl==3.1.2
 PyMuPDF==1.22.5
-Pillow==9.5.0  # Updated to newer version with pre-built wheels
+Pillow==9.5.0 --only-binary=:all:
 numpy>=1.26.0,<=1.26.4
 
 # OCR
