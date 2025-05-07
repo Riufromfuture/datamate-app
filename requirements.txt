@@ -12,7 +12,7 @@ langchain==0.1.13
 langchain-community==0.0.29
 langchain-core==0.1.36
 langchain-groq==0.0.1
-groq==0.2.1  # Ensure correct version of Groq
+groq  # Ensure correct version of Groq
 
 # Data
 pandas==2.2.1
