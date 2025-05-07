@@ -1,5 +1,8 @@
 pip install --upgrade pip
 
-# Install Tesseract
-apt-get update
-apt-get install -y tesseract-ocr
+#!/bin/bash
+apt-get update && apt-get install -y \
+    python3-dev \
+    zlib1g-dev \
+    libjpeg-dev \
+    libpng-dev
