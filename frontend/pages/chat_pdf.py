@@ -6,6 +6,7 @@ from PIL import Image
 from io import BytesIO
 from paddleocr import PaddleOCR
 from groq import Groq
+from dotenv import load_dotenv
 import os
 
 load_dotenv()  # This loads the .env file into environment variables
