@@ -8,15 +8,15 @@ pydantic==1.10.15
 python-dotenv==1.0.1
 
 # LLMs & Langchain
-langchain==0.1.13
-langchain-community==0.0.28
-langchain-core==0.1.36
-langchain-groq==0.0.3
-
 # langchain==0.1.13
-# langchain-community==0.0.29
+# langchain-community==0.0.28
 # langchain-core==0.1.36
-# langchain-groq==0.0.1
+# langchain-groq==0.0.3
+
+langchain==0.1.13
+langchain-community==0.0.29
+langchain-core==0.1.36
+langchain-groq==0.0.1
 groq
 
 # Data
