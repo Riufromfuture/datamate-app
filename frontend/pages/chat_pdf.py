@@ -8,6 +8,7 @@ from paddleocr import PaddleOCR
 from groq import Groq
 import os
 
+load_dotenv()  # This loads the .env file into environment variables
 # Navbar
 from components.navbar import show_navbar
 
