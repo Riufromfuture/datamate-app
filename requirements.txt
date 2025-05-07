@@ -1,3 +1,5 @@
+pip install --upgrade pip
+
 # Core Web App
 streamlit==1.32.2
 fastapi==0.110.1
@@ -11,7 +13,7 @@ python-dotenv==1.0.1
 langchain==0.1.13
 langchain-community==0.0.29
 langchain-core==0.1.36
-langchain-groq==0.0.3
+langchain-groq==0.0.2
 groq
 
 # Data
