@@ -22,5 +22,6 @@ requests==2.31.0
 python-docx
 openpyxl
 PyMuPDF==1.22.5
-pytesseract
 Pillow
+easyocr
+numpy
