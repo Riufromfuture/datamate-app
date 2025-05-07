@@ -1,5 +1,6 @@
 # Core Web App
 streamlit==1.32.2
+rich
 fastapi==0.110.1
 uvicorn==0.29.0
 
@@ -24,5 +25,3 @@ openpyxl
 PyMuPDF==1.22.5
 pytesseract
 Pillow
-
-rich>=10.14.0,<14
