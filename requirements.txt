@@ -1,6 +1,6 @@
 # Core Web App
 streamlit==1.32.2
-rich
+rich>=<14,10.14.0
 fastapi==0.110.1
 uvicorn==0.29.0
 
