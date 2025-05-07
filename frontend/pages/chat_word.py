@@ -2,10 +2,11 @@ import streamlit as st
 import pandas as pd
 from docx import Document
 from groq import Groq
+from dotenv import load_dotenv
 import os
-
-# Navbar if you have one
 from components.navbar import show_navbar
+
+load_dotenv()  # This loads the .env file into environment variables
 
 st.set_page_config(page_title="Chat with Word Document", page_icon="📄")
 show_navbar()
