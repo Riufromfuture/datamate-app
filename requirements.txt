@@ -10,8 +10,8 @@ python-dotenv==1.0.1
 # LLMs & Langchain
 langchain==0.1.13
 langchain-community==0.0.29
-langchain-core==0.1.36
-langchain-groq==0.3.2
+langchain-core>=0.1.36,<0.2
+langchain-groq==0.1.10  # or the latest compatible version from PyPI
 groq
 
 # Data
