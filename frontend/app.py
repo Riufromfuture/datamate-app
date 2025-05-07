@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="SQLMate", page_icon="🧠", layout="wide")
+st.set_page_config(page_title="DataMate", page_icon="🧠", layout="wide")
 
 from components.navbar import show_navbar
 #from components.sidebar import show_sidebar
