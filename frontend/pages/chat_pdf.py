@@ -4,12 +4,13 @@ import fitz  # PyMuPDF
 import numpy as np
 from PIL import Image
 from io import BytesIO
-from paddleocr import PaddleOCR
 from groq import Groq
-from dotenv import load_dotenv
 import os
 
-load_dotenv()  # This loads the .env file into environment variables
+# Google Cloud Vision setup
+from google.cloud import vision
+from google.oauth2 import service_account
+
 # Navbar
 from components.navbar import show_navbar
 
@@ -17,19 +18,21 @@ st.set_page_config(page_title="Chat with PDF", page_icon="📄")
 show_navbar()
 st.title("📄 Chat with PDF")
 
+# Setup Google Vision client
+if "GCP_CREDENTIALS" in st.secrets:
+    creds_dict = st.secrets["GCP_CREDENTIALS"]
+    creds = service_account.Credentials.from_service_account_info(creds_dict)
+    vision_client = vision.ImageAnnotatorClient(credentials=creds)
+else:
+    st.error("❌ Google Cloud credentials are missing in secrets.")
+    st.stop()
+
 # GROQ API key
 groq_api_key = os.getenv("GROQ_API_KEY")
 if not groq_api_key:
     st.error("❌ GROQ_API_KEY is missing. Please set it in your environment or Streamlit secrets.")
 else:
     client = Groq(api_key=groq_api_key)
-
-# 🔄 Cache PaddleOCR reader
-@st.cache_resource
-def load_ocr_reader():
-    return PaddleOCR(use_angle_cls=True, lang='en', show_log=False)
-
-ocr = load_ocr_reader()
 
 # Session state
 if "pdf_messages" not in st.session_state:
@@ -53,13 +56,20 @@ if uploaded_pdf:
                 text_chunks.append(text)
             else:
                 if page_num == 0:
-                    st.info("Scanned PDF detected. Running OCR on images 🧠")
+                    st.info("Scanned PDF detected. Running Google OCR 🧠")
                 pix = page.get_pixmap(dpi=150)
                 img = Image.open(BytesIO(pix.tobytes()))
-                ocr_result = ocr.ocr(np.array(img), cls=True)
-                ocr_text = " ".join([line[1][0] for block in ocr_result for line in block])
-                if ocr_text.strip():
-                    text_chunks.append(ocr_text.strip())
+
+                # Convert image to byte array for Google Vision API
+                img_byte_arr = BytesIO()
+                img.save(img_byte_arr, format="PNG")
+                image = vision.Image(content=img_byte_arr.getvalue())
+
+                response = vision_client.document_text_detection(image=image)
+                ocr_text = response.full_text_annotation.text.strip()
+
+                if ocr_text:
+                    text_chunks.append(ocr_text)
 
             progress.progress((page_num + 1) / total_pages, text=f"Processing page {page_num + 1} of {total_pages}")
 
