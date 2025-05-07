@@ -1,0 +1,26 @@
+# Web & Frontend
+streamlit==1.32.2
+fastapi==0.110.1
+uvicorn==0.29.0
+
+# Validation & Env
+pydantic==1.10.15
+python-dotenv==1.0.1
+
+# LLMs & APIs
+langchain==0.1.13
+langchain-community==0.0.28
+langchain-core==0.1.36
+langchain-groq==0.0.3
+groq
+
+# Data Handling
+pandas==2.2.1
+requests==2.31.0
+
+# File Parsing (Excel, Word, PDF)
+python-docx
+openpyxl
+PyMuPDF==1.22.5
+pytesseract
+Pillow
