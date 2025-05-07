@@ -29,3 +29,5 @@ numpy
 paddleocr
 paddlepaddle  # Use CPU version for Streamlit Cloud
 opencv-python-headless
+# Fix for PaddlePaddle dependencies
+setuptools>=65.0.0
