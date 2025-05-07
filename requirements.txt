@@ -12,22 +12,27 @@ langchain==0.1.13
 langchain-community==0.0.29
 langchain-core==0.1.36
 langchain-groq==0.0.1
-groq
+groq==0.2.1  # Ensure correct version of Groq
 
 # Data
 pandas==2.2.1
 requests==2.31.0
 
 # File Parsing
-python-docx
-openpyxl
+python-docx==0.8.11
+openpyxl==3.1.2
 PyMuPDF==1.22.5
-Pillow
-numpy
+Pillow==9.2.0
+numpy==1.23.5
 
 # OCR
-paddleocr
-paddlepaddle  # Use CPU version for Streamlit Cloud
-opencv-python-headless>=4.5.5.64
-# Fix for PaddlePaddle dependencies
+google-cloud-vision==3.0.2  # Google Cloud Vision API for OCR
+
+# Fix for Google Cloud dependencies
+google-auth==2.14.1
+
+# Fix for any dependencies
 setuptools>=65.0.0
+
+# Protobuf version that works with Streamlit and Google Cloud dependencies
+protobuf==3.20.2
