@@ -1,10 +1,11 @@
 import streamlit as st
 import pandas as pd
 from groq import Groq
+from dotenv import load_dotenv
 import os
-
 from components.navbar import show_navbar
 
+load_dotenv()  # This loads the .env file into environment variables
 # --- Navbar ---
 st.set_page_config(page_title="Excel Chat", page_icon="📄")
 show_navbar()
