@@ -1,34 +1,35 @@
 import streamlit as st
 import pandas as pd
 import fitz  # PyMuPDF
-import easyocr
 import numpy as np
 from PIL import Image
 from io import BytesIO
+from paddleocr import PaddleOCR
 from groq import Groq
-from dotenv import load_dotenv
 import os
 
-# Navbar (if you have one)
+# Navbar
 from components.navbar import show_navbar
-
-load_dotenv()  # This loads the .env file into environment variables
 
 st.set_page_config(page_title="Chat with PDF", page_icon="📄")
 show_navbar()
 st.title("📄 Chat with PDF")
 
-# Initialize Groq
+# GROQ API key
 groq_api_key = os.getenv("GROQ_API_KEY")
 if not groq_api_key:
     st.error("❌ GROQ_API_KEY is missing. Please set it in your environment or Streamlit secrets.")
 else:
     client = Groq(api_key=groq_api_key)
 
-# Initialize EasyOCR
-reader = easyocr.Reader(['en'], gpu=False)
+# 🔄 Cache PaddleOCR reader
+@st.cache_resource
+def load_ocr_reader():
+    return PaddleOCR(use_angle_cls=True, lang='en', show_log=False)
 
-# Initialize session state
+ocr = load_ocr_reader()
+
+# Session state
 if "pdf_messages" not in st.session_state:
     st.session_state["pdf_messages"] = [{"role": "assistant", "content": "Ask your questions!"}]
 if "pdf_chat_history" not in st.session_state:
@@ -38,8 +39,10 @@ uploaded_pdf = st.file_uploader("Upload a PDF file", type=["pdf"])
 if uploaded_pdf:
     text_chunks = []
 
-    # Open PDF using fitz (PyMuPDF)
     with fitz.open(stream=uploaded_pdf.read(), filetype="pdf") as doc:
+        total_pages = len(doc)
+        progress = st.progress(0, text="🔍 Processing PDF...")
+
         for page_num, page in enumerate(doc):
             text = page.get_text().strip()
             if text:
@@ -49,12 +52,14 @@ if uploaded_pdf:
             else:
                 if page_num == 0:
                     st.info("Scanned PDF detected. Running OCR on images 🧠")
-                pix = page.get_pixmap(dpi=300)
+                pix = page.get_pixmap(dpi=150)
                 img = Image.open(BytesIO(pix.tobytes()))
-                ocr_result = reader.readtext(np.array(img), detail=0)
-                ocr_text = " ".join(ocr_result)
+                ocr_result = ocr.ocr(np.array(img), cls=True)
+                ocr_text = " ".join([line[1][0] for block in ocr_result for line in block])
                 if ocr_text.strip():
                     text_chunks.append(ocr_text.strip())
+
+            progress.progress((page_num + 1) / total_pages, text=f"Processing page {page_num + 1} of {total_pages}")
 
     if not text_chunks:
         st.warning("❌ Could not extract any text from the PDF.")
