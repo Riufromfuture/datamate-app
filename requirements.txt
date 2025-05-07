@@ -24,3 +24,5 @@ openpyxl
 PyMuPDF==1.22.5
 pytesseract
 Pillow
+
+rich>=10.14.0,<14
