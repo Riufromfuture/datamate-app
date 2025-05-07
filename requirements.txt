@@ -28,6 +28,6 @@ numpy
 # OCR
 paddleocr
 paddlepaddle  # Use CPU version for Streamlit Cloud
-opencv-python-headless
+opencv-python-headless>=4.5.5.64
 # Fix for PaddlePaddle dependencies
 setuptools>=65.0.0
