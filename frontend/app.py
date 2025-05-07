@@ -82,7 +82,6 @@ st.markdown("""
     <div class="glass-title">💡 What Can You Do?</div>
     <p></p>
     <ul>
-        <li></li>
         <li>📊 Explore Excel sheets with Excel Chat</li>
         <li>📄 Understand PDFs, including scanned ones, using PDF Chat</li>
         <li>📝 Ask questions about Word docs with Word Chat</li>
