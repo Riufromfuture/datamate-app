@@ -28,3 +28,4 @@ numpy
 # OCR
 paddleocr
 paddlepaddle  # Use CPU version for Streamlit Cloud
+opencv-python-headless
