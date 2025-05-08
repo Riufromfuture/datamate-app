@@ -50,12 +50,13 @@ except Exception as e:
     st.stop()
 
 # GROQ API key
-groq_api_key = os.getenv("GROQ_API_KEY")
-if not groq_api_key:
-    st.error("❌ GROQ_API_KEY is missing. Please set it in your environment or Streamlit secrets.")
-else:
+try:
+    groq_api_key = st.secrets["GROQ_API_KEY"]
     client = Groq(api_key=groq_api_key)
-
+except KeyError:
+    st.error("❌ GROQ_API_KEY is missing from Streamlit secrets. Please add it to your `.streamlit/secrets.toml`.")
+    st.stop()
+    
 # Session state
 if "pdf_messages" not in st.session_state:
     st.session_state["pdf_messages"] = [{"role": "assistant", "content": "Ask your questions!"}]
