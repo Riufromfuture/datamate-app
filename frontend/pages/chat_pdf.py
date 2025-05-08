@@ -134,7 +134,11 @@ Answer:"""
                         st.session_state["pdf_messages"].append({"role": "assistant", "content": answer})
                         st.session_state["pdf_chat_history"].append({"Q": user_query, "A": answer})
                     except Exception as e:
-                        error_msg = f"❌ Error: {e}"
+                        error_str = str(e)
+                        if "Request too large" in error_str or "'code': 'rate_limit_exceeded'" in error_str:
+                            error_msg = "❌ File too long. The document exceeds the model's processing limit. Please upload a shorter PDF or split it into smaller parts."
+                        else:
+                            error_msg = f"❌ Error: {e}"
                         st.error(error_msg)
                         st.session_state["pdf_messages"].append({"role": "assistant", "content": error_msg})
 
