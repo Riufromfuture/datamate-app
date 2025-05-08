@@ -80,7 +80,7 @@ if uploaded_pdf:
                 text_chunks.append(text)
             else:
                 if page_num == 0:
-                    st.info("Scanned PDF detected. Running Google OCR 🔍")
+                    st.info("Scanned PDF detected. Running Google OCR 🧠")
                 pix = page.get_pixmap(dpi=150)
                 img = Image.open(BytesIO(pix.tobytes()))
 
