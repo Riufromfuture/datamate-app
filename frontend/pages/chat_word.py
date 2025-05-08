@@ -25,18 +25,21 @@ if "word_messages" not in st.session_state:
 if "word_chat_history" not in st.session_state:
     st.session_state["word_chat_history"] = []
 
+# File uploader
 uploaded_word = st.file_uploader("Upload a Word document", type=["docx"])
 if uploaded_word:
     text_chunks = []
-
-    # Extract text using python-docx
     doc = Document(uploaded_word)
-    for para in doc.paragraphs:
+    total_paragraphs = len(doc.paragraphs)
+    progress = st.progress(0, text="Starting to read the Word document...")
+
+    for idx, para in enumerate(doc.paragraphs):
         if para.text.strip():
             text_chunks.append(para.text.strip())
+        progress.progress((idx + 1) / total_paragraphs, text=f"Loaded paragraph {idx + 1} of {total_paragraphs}")
 
     # Combine content
-    word_text = "\n\n".join(text_chunks[:])  # Limit for token efficiency
+    word_text = "\n\n".join(text_chunks[:])  # You may limit paragraphs for token efficiency
 
     # Show conversation history
     for msg in st.session_state["word_messages"]:
