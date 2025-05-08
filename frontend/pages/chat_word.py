@@ -103,10 +103,18 @@ Answer:"""
 
     # Chat download option
     if st.session_state["word_chat_history"]:
-        if st.sidebar.download_button("📥 Download Chat",
-            data=pd.DataFrame(st.session_state["word_chat_history"]).to_csv(index=False),
-            file_name="word_chat_history.csv",
-            mime="text/csv"):
-            st.sidebar.success("Downloaded!")
+    # Format chat history as a readable chat transcript
+        formatted_text = ""
+        for i, entry in enumerate(st.session_state["word_chat_history"], 1):
+            formatted_text += f"🧑‍💬 Question {i}:\n{entry['Q']}\n\n🤖 Answer {i}:\n{entry['A']}\n\n{'-'*50}\n\n"
+    
+        # Download as a nicely formatted .txt file
+        if st.sidebar.download_button(
+            label="📥 Download Chat",
+            data=formatted_text,
+            file_name="word_chat_history.txt",
+            mime="text/plain"
+        ):
+            st.sidebar.success("✅ Chat history downloaded as formatted text!")
 else:
     st.info("Please upload a Word document to begin.")
