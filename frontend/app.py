@@ -121,7 +121,7 @@ st.markdown('''
         <li>🧠 <strong>LLM-powered intelligence</strong></li>
         <li>🖱️ <strong>Easy-to-use interface</strong></li>
         <li>🔐 <strong>Works locally — your data stays with you</strong></li>
-        <li>📥 <strong>📥 Download chat history anytime</strong></li>
+        <li>📥 <strong>Download chat history anytime</strong></li>
     </ul>
 </div>
 ''', unsafe_allow_html=True)
@@ -149,7 +149,7 @@ st.markdown('''
 
 # Footer
 st.markdown("---")
-st.caption("Made with ❤️ using Streamlit, FastAPI, and LangChain.")
+st.caption("Made using Streamlit, FastAPI, and LangChain.")
 
 
 
