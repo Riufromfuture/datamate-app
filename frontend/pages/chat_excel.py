@@ -9,7 +9,7 @@ load_dotenv()  # This loads the .env file into environment variables
 # --- Navbar ---
 st.set_page_config(page_title="Excel Chat", page_icon="https://img.icons8.com/?size=100&id=11566&format=png&color=000000")
 show_navbar()
-st.title("📄 Chat with Excel Sheet")
+st.title("https://img.icons8.com/?size=100&id=11566&format=png&color=000000 Chat with Excel Sheet")
 
 # Initialize Groq
 groq_api_key = os.getenv("GROQ_API_KEY")
