@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="https://img.icons8.com/?size=100&id=tSKyyMXYaNRe&format=png&color=000000", layout="wide")
+st.set_page_config(page_title="https://img.icons8.com/?size=100&id=KDfvdgOT3NSo&format=png&color=000000", layout="wide")
 
 from components.navbar import show_navbar
 #from components.sidebar import show_sidebar
