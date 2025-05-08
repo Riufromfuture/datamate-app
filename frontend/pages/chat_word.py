@@ -94,12 +94,14 @@ Answer:"""
                         error_msg = f"❌ Error: {e}"
                     st.error(error_msg)
                     st.session_state["word_messages"].append({"role": "assistant", "content": error_msg})
-
+                    
+    # Clear chat history
     if st.sidebar.button("🗑️ Clear Chat History"):
         st.session_state["word_messages"] = [{"role": "assistant", "content": "Ask your questions!"}]
         st.session_state["word_chat_history"] = []
         st.rerun()
 
+    # Chat download option
     if st.session_state["word_chat_history"]:
         if st.sidebar.download_button("📥 Download Chat",
             data=pd.DataFrame(st.session_state["word_chat_history"]).to_csv(index=False),
