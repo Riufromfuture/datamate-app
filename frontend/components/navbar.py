@@ -27,7 +27,9 @@ def show_navbar():
             }
         </style>
         <div class="navbar">
-            <h1>Welcome to <strong>DataMate</strong> 🚀</h1>
+            <h1>Welcome to <strong>DataMate</strong>
+            <img src="https://img.icons8.com/?size=100&id=KDfvdgOT3NSo&format=png&color=000000" alt="icon" width="28" height="28"; vertical-align: middle;">
+            </h1>
             <p>Your AI-powered assistant for interacting with the data</p>
         </div>
         """,
