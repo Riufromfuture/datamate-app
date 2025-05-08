@@ -7,7 +7,7 @@ from components.navbar import show_navbar
 
 load_dotenv()  # This loads the .env file into environment variables
 # --- Navbar ---
-st.set_page_config(page_title="Excel Chat", page_icon="https://img.icons8.com/?size=100&id=11566&format=png&color=000000")
+st.set_page_config(page_title="DataMate • Excel Chat", page_icon="https://img.icons8.com/?size=100&id=112370&format=png&color=000000")
 show_navbar()
 
 # Title 
