@@ -20,12 +20,23 @@ show_navbar()
 st.title("📄 Chat with PDF")
 
 # Setup Google Vision client
-if "GCP_CREDENTIALS" in st.secrets:
-    creds_dict = st.secrets["GCP_CREDENTIALS"]
-    creds = service_account.Credentials.from_service_account_info(creds_dict)
+try:
+    creds = service_account.Credentials.from_service_account_info({
+        "type": st.secrets["GCP_TYPE"],
+        "project_id": st.secrets["GCP_PROJECT_ID"],
+        "private_key_id": st.secrets["GCP_PRIVATE_KEY_ID"],
+        "private_key": st.secrets["GCP_PRIVATE_KEY"],
+        "client_email": st.secrets["GCP_CLIENT_EMAIL"],
+        "client_id": st.secrets["GCP_CLIENT_ID"],
+        "auth_uri": st.secrets["GCP_AUTH_URI"],
+        "token_uri": st.secrets["GCP_TOKEN_URI"],
+        "auth_provider_x509_cert_url": st.secrets["GCP_AUTH_PROVIDER_CERT_URL"],
+        "client_x509_cert_url": st.secrets["GCP_CLIENT_CERT_URL"],
+        "universe_domain": st.secrets["GCP_UNIVERSE_DOMAIN"]
+    })
     vision_client = vision.ImageAnnotatorClient(credentials=creds)
-else:
-    st.error("❌ Google Cloud credentials are missing in secrets.")
+except Exception as e:
+    st.error(f"❌ Failed to initialize Google Vision client: {str(e)}")
     st.stop()
 
 # GROQ API key
