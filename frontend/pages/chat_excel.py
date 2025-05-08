@@ -105,9 +105,13 @@ Answer:"""
                     st.session_state["excel_cleaned_history"].append({"Q": user_query, "A": response_text})
 
                 except Exception as e:
-                    error_msg = f"❌ Error generating answer: {e}"
+                    error_str = str(e)
+                    if "Request too large" in error_str or "'code': 'rate_limit_exceeded'" in error_str:
+                        error_msg = "❌ File too long. The document exceeds the model's processing limit. Please upload a shorter file or split it into smaller parts."
+                    else:
+                        error_msg = f"❌ Error: {e}"
                     st.error(error_msg)
-                    st.session_state["excel_messages"].append({"role": "assistant", "content": error_msg})
+                    st.session_state["word_messages"].append({"role": "assistant", "content": error_msg})
 
     # Clear chat history
     if st.sidebar.button("🗑️ Clear Chat History"):
