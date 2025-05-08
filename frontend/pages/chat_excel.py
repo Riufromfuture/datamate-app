@@ -29,9 +29,16 @@ uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
 if uploaded_file:
     xls = pd.ExcelFile(uploaded_file)
     sheet_names = xls.sheet_names
-    sheet_name = st.selectbox("Select a sheet to load", sheet_names)
-    df = pd.read_excel(xls, sheet_name=sheet_name)
-    st.dataframe(df)
+    total_pages = len(sheet_names)
+    progress = st.progress(0, text="Starting sheet processing...")
+
+    all_dfs = []
+    for page_num, sheet in enumerate(sheet_names):
+        df = pd.read_excel(xls, sheet_name=sheet)
+        df['__sheet_name__'] = sheet  # Track sheet origin if needed
+        all_dfs.append(df)
+
+        progress.progress((page_num + 1) / total_pages, text=f"Loaded sheet {page_num + 1} of {total_pages}")
 
     # Show chat history
     for msg in st.session_state["excel_messages"]:
