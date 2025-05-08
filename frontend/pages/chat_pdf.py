@@ -15,7 +15,7 @@ from google.oauth2 import service_account
 # Navbar
 from components.navbar import show_navbar
 load_dotenv()  # This loads the .env file into environment variables
-st.set_page_config(page_title="DataMate • Chat PDF", page_icon="https://img.icons8.com/?size=100&id=299&format=png&color=000000")
+st.set_page_config(page_title="DataMate • Chat PDF", page_icon="https://img.icons8.com/?size=100&id=112370&format=png&color=000000")
 show_navbar()
 
 # Title 
