@@ -23,11 +23,12 @@ st.markdown(
 )
 
 # Initialize Groq
-groq_api_key = os.getenv("GROQ_API_KEY")
-if not groq_api_key:
-    st.error("❌ GROQ_API_KEY is missing. Please set the environment variable.")
-else:
+try:
+    groq_api_key = st.secrets["GROQ_API_KEY"]
     client = Groq(api_key=groq_api_key)
+except KeyError:
+    st.error("❌ GROQ_API_KEY is missing from Streamlit secrets. Please add it to your `.streamlit/secrets.toml`.")
+    st.stop()
 
 # Initialize chat state
 if "word_messages" not in st.session_state:
