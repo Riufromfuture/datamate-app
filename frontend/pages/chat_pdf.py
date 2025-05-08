@@ -63,6 +63,7 @@ if "pdf_messages" not in st.session_state:
 if "pdf_chat_history" not in st.session_state:
     st.session_state["pdf_chat_history"] = []
 
+# File uploader
 uploaded_pdf = st.file_uploader("Upload a PDF file", type=["pdf"])
 if uploaded_pdf:
     text_chunks = []
