@@ -15,9 +15,19 @@ from google.oauth2 import service_account
 # Navbar
 from components.navbar import show_navbar
 load_dotenv()  # This loads the .env file into environment variables
-st.set_page_config(page_title="Chat with PDF", page_icon="📄")
+st.set_page_config(page_title="Chat with PDF", page_icon="https://img.icons8.com/?size=100&id=299&format=png&color=000000")
 show_navbar()
-st.title("📄 Chat with PDF")
+
+# Title 
+st.markdown(
+    """
+    <div style='display: flex; align-items: center; gap: 20px; margin-bottom: 1rem;'>
+        <img src='https://img.icons8.com/?size=100&id=299&format=png&color=000000' width='50' height='50' style='margin-left: 10px;'/>
+        <h1 style='margin: 0;'>Chat with PDF</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Setup Google Vision client
 try:
