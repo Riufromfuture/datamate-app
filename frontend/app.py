@@ -126,26 +126,26 @@ st.markdown('''
 </div>
 ''', unsafe_allow_html=True)
 
-st.markdown('''
-<div class="glass-card">
-    <div class="glass-title">🔑 How to Get Your Own Groq API Key</div>
-    <p>To power natural language processing, SQLMate uses the Groq API with LLMs. You’ll need your own API key to start querying.</p>
-    <ul>
-        <li>Visit <a href="https://console.groq.com/keys" target="_blank">Groq Console</a>.</li>
-        <li>Log in or create an account.</li>
-        <li>Navigate to the <strong>API Keys</strong> section.</li>
-        <li>Click on <strong>Create API Key</strong> and copy it.</li>
-        <li>Paste the key when prompted in the Chat interface.</li>
-    </ul>
-    <p style="font-size: 0.9rem;"><em>Your API key stays only in your current session for privacy and security.</em></p>
-</div>
-''', unsafe_allow_html=True)
+# st.markdown('''
+# <div class="glass-card">
+#     <div class="glass-title">🔑 How to Get Your Own Groq API Key</div>
+#     <p>To power natural language processing, SQLMate uses the Groq API with LLMs. You’ll need your own API key to start querying.</p>
+#     <ul>
+#         <li>Visit <a href="https://console.groq.com/keys" target="_blank">Groq Console</a>.</li>
+#         <li>Log in or create an account.</li>
+#         <li>Navigate to the <strong>API Keys</strong> section.</li>
+#         <li>Click on <strong>Create API Key</strong> and copy it.</li>
+#         <li>Paste the key when prompted in the Chat interface.</li>
+#     </ul>
+#     <p style="font-size: 0.9rem;"><em>Your API key stays only in your current session for privacy and security.</em></p>
+# </div>
+# ''', unsafe_allow_html=True)
 
-st.markdown('''
-    <div class="glass-card" style="text-align: center;">
-        <h3>🚀 Ready to try it out?</h3>
-    </div>
-''', unsafe_allow_html=True)
+# st.markdown('''
+#     <div class="glass-card" style="text-align: center;">
+#         <h3>🚀 Ready to try it out?</h3>
+#     </div>
+# ''', unsafe_allow_html=True)
 
 # Footer
 st.markdown("---")
