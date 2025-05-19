@@ -95,7 +95,7 @@ st.markdown('''
     <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
         <div style="text-align: center; flex: 1; min-width: 200px;">
             <img src="https://cdn-icons-png.flaticon.com/512/3523/3523885.png" width="80"/>
-            <p><strong>1. Upload or Connect</strong></p>
+            <p><strong>1. Upload </strong></p>
             <p style="font-size: 0.9rem;">Load your file or database.</p>
         </div>
         <div style="text-align: center; flex: 1; min-width: 200px;">
