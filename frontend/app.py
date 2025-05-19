@@ -141,11 +141,11 @@ st.markdown('''
 # </div>
 # ''', unsafe_allow_html=True)
 
-# st.markdown('''
-#     <div class="glass-card" style="text-align: center;">
-#         <h3>🚀 Ready to try it out?</h3>
-#     </div>
-# ''', unsafe_allow_html=True)
+st.markdown('''
+    <div class="glass-card" style="text-align: center;">
+        <h3>🚀 Ready to try it out?</h3>
+    </div>
+''', unsafe_allow_html=True)
 
 # Footer
 st.markdown("---")
