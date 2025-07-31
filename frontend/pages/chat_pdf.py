@@ -11,6 +11,7 @@ import os
 # Google Cloud Vision setup
 from google.cloud import vision
 from google.oauth2 import service_account
+from google.api_core.exceptions import ResourceExhausted, PermissionDenied
 
 # Navbar
 from components.navbar import show_navbar
@@ -89,11 +90,23 @@ if uploaded_pdf:
                 img.save(img_byte_arr, format="PNG")
                 image = vision.Image(content=img_byte_arr.getvalue())
 
-                response = vision_client.document_text_detection(image=image)
-                ocr_text = response.full_text_annotation.text.strip()
+                try:
+                    response = vision_client.document_text_detection(image=image)
+                    ocr_text = response.full_text_annotation.text.strip()
 
-                if ocr_text:
-                    text_chunks.append(ocr_text)
+                    if ocr_text:
+                        text_chunks.append(ocr_text)
+                    else:
+                        st.warning(f"⚠️ No text found on page {page_num + 1}")
+                except ResourceExhausted:
+                    st.error("❌ This PDF page is too large for processing")
+                    st.stop()
+                except PermissionDenied:
+                    st.error("❌ Processing limit reached. Please try a smaller file")
+                    st.stop()
+                except Exception as e:
+                    st.error(f"❌ Error processing page {page_num + 1}: {str(e)}")
+                    continue  # Skip this page but continue with others
 
             progress.progress((page_num + 1) / total_pages, text=f"Processing page {page_num + 1} of {total_pages}")
 
